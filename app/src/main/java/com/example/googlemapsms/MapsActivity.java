@@ -69,7 +69,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void sendingSms(){
         SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("+254708372477", null, "https://maps.google.com/?saddr=&daddr=Current+Location", null, null);
+        smsManager.sendTextMessage("+254702668083", null, "https://www.google.com/maps/dir/?api=1&destination=lat,lng", null, null);
         Toast.makeText(getApplicationContext(), "SMS SENT",
                 Toast.LENGTH_LONG).show();
 
