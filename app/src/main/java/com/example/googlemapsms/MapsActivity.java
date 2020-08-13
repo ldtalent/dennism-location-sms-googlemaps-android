@@ -56,7 +56,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
 
-//        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
+       ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
 
         sendSms.setOnClickListener(new View.OnClickListener() {
             @Override
