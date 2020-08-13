@@ -42,6 +42,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     Marker mCurrLocationMarker;
     FusedLocationProviderClient mFusedLocationClient;
     Button sendSms;
+    private static final int PERMISSION_SEND_SMS = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,22 +59,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS},1);
 
-        sendSms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendingSms();
-            }
-        });
+
+
     }
 
 
-    public void sendingSms(){
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage("+254702668083", null, "https://www.google.com/maps/dir/?api=1&destination=lat,lng", null, null);
-        Toast.makeText(getApplicationContext(), "SMS SENT",
-                Toast.LENGTH_LONG).show();
-
-    }
 
     @Override
     public void onPause() {
@@ -199,6 +189,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     System.exit(0);
                 }
             }
+        }
+
+        switch(requestCode)
+        {
+            case PERMISSION_SEND_SMS:
+                if(grantResults != null && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    sendSms.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                    SmsManager smsManager = SmsManager.getDefault();
+                    smsManager.sendTextMessage("+254708372477", null, "https://www.google.com/maps/dir/?api=1&destination=lat,lng", null, null);
+                    Toast.makeText(getApplicationContext(), "SMS SENT",
+                            Toast.LENGTH_LONG).show();
+                        }
+                    });
+
+                }
+
+                break;
         }
     }
 
